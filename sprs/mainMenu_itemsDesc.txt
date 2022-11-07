@@ -1,0 +1,10 @@
+1- Inserir elemento
+2- Listar Vertical
+3- Listar chaves em formato de arvore
+4- Procurar por chave
+5- Editar elemento
+6- Excluir elemento
+7- Imprimir elementos ordenados
+8- Quantidade de elementos
+9- Altura da arvore
+0- Sair
