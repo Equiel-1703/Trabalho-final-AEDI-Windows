@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "cwchar": "c",
+        "windows.h": "c",
+        "graphics.h": "c"
+    }
+}
