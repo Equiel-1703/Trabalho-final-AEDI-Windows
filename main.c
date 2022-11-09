@@ -33,38 +33,43 @@ int main(int argc, char const *argv[])
 
     char *SPR1_INIT = loadSPR("./sprs/Opening.txt");
     char *SPR2_INIT = loadSPR("./sprs/Opening2.txt");
+    char *SPR3_INIT = loadSPR("./sprs/Opening3.txt");
     char *FALAS = loadSPR("./sprs/Falas.txt");
 
     setCmdCursor(0, 0, hConsoleOut);
-    showSPR(SPR1_INIT, 0);
+    showSPR(SPR1_INIT, 0, -1);
     showFala('1', FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
+    // Animação de mexer a boca
     for (int i = 0; i < 5; i++)
     {
         timer(150);
 
         setCmdCursor(0, 60, hConsoleOut);
-        showSPR(SPR2_INIT, 60);
+        showSPR(SPR2_INIT, 60, 64);
 
         timer(150);
 
         setCmdCursor(0, 60, hConsoleOut);
-        showSPR(SPR1_INIT, 60);
+        showSPR(SPR1_INIT, 60, 64);
     }
 
     getch();
 
+    setCmdCursor(0, 41, hConsoleOut);
+    showSPR(SPR3_INIT, 41, 55);
     showFala('2', FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
+    // Animação de mexer a boca
     for (int i = 0; i < 5; i++)
     {
         timer(150);
 
         setCmdCursor(0, 60, hConsoleOut);
-        showSPR(SPR2_INIT, 60);
+        showSPR(SPR2_INIT, 60, 64);
 
         timer(150);
 
         setCmdCursor(0, 60, hConsoleOut);
-        showSPR(SPR1_INIT, 60);
+        showSPR(SPR1_INIT, 60, 64);
     }
 
     getchar();

@@ -61,9 +61,10 @@ void showFala(char falaNum, char *falaStr, int posX, int posY, HANDLE hConsoleOu
     while (falaStr[++i] != falaNum + 1 && i < tam)
     {
         setCmdCursor(posX, posY, hConsoleOut);
+
         if (falaStr[i] != '\n')
         {
-            printf("%c", falaStr[i]);
+            putc(falaStr[i], stdout);
             posX++;
         }
         else
@@ -74,30 +75,48 @@ void showFala(char falaNum, char *falaStr, int posX, int posY, HANDLE hConsoleOu
     }
 }
 
-// Mostra um sprite a partir de determinada linha (0 em diante)
-void showSPR(char *SPR, int lineStart)
+// Mostra um sprite a partir de determinada linha até outra dada linha. AS LINHAS COMEÇAM EM 0!!
+void showSPR(char *SPR, int lineStart, int lineEnd)
 {
-    int i = 0;
-
-    if (lineStart > 0)
+    if (lineStart > lineEnd && lineEnd != -1)
     {
-        char *temp = strchr(SPR, '\n');
-
-        for (int j = 0; j < lineStart; j++)
-        {
-            if (temp == NULL)
-            {
-                printf("Erro lendo string!\nLinha não existe!!");
-                return;
-            }
-
-            i = (int)(temp - SPR);
-            temp = strchr(temp + 1, '\n');
-        }
-        i++;
+        printf("Linhas de início e fim inválidas!!\n");
+        getchar();
+        return;
     }
 
-    printf("%s", &SPR[i]);
+    int tamSPR = strlen(SPR); // Lembrando que strlen ignora o \0
+    int startIndex = 0, endIndex = 0;
+
+    // Aqui ele encontra o índice da linha que vai começar a imprimir
+    if (lineStart > 0)
+    {
+        int i = 0;
+
+        for (; startIndex < tamSPR && i != lineStart; startIndex++)
+        {
+            if (SPR[startIndex] == '\n')
+                i++;
+        }
+    }
+
+    if (lineEnd != -1)
+    {
+        int numLines = lineEnd - lineStart;
+        endIndex = startIndex;
+
+        while (numLines >= 0 && endIndex < tamSPR)
+        {
+            if (SPR[endIndex] == '\n')
+                numLines--;
+
+            endIndex++;
+        }
+
+        fwrite(SPR + startIndex, sizeof(char), endIndex - startIndex, stdout);
+    }
+    else
+        fwrite(SPR + startIndex, sizeof(char), tamSPR - startIndex, stdout);
 }
 
 // --------------------------------------------------- Manipulação do Console ---------------------------------------------------

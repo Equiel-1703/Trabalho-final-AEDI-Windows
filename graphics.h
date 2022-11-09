@@ -9,7 +9,7 @@
 #define POS_FALA_X 151
 #define POS_FALA_Y 22
 
-void showSPR(char *SPR, int lineStart);
+void showSPR(char *SPR, int lineStart, int lineEnd);
 char *loadSPR(const char *arquivo);
 void showFala(char falaNum, char *falaStr, int posX, int posY, HANDLE hConsoleOut);
 
