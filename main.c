@@ -113,8 +113,10 @@ int main(int argc, char const *argv[])
         // Exibe o menu de opções
         showSPRinPos(SPR_MENU_OPTNS, 57, 16, hConsoleOut);
 
-        FlushConsoleInputBuffer(hConsoleIn);
-        usrSelection = getch();
+        do
+        {
+            FlushConsoleInputBuffer(hConsoleIn);
+        } while ((usrSelection = getch()) > '9' || usrSelection < '0');
 
         // Configura o console para a parte do sistema do mercado
         system("cls");
