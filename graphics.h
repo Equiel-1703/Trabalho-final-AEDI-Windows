@@ -18,7 +18,7 @@
 
 void showSPR(char *SPR, int lineStart, int lineEnd);
 char *loadSPR(const char *arquivo);
-void showFala(char falaNum, char *falaStr, int posX, int posY, HANDLE hConsoleOut);
+void showFala(char falaNum, char *falaSPR, int posX, int posY, HANDLE hConsoleOut);
 void showSPRinPos(char *SPR, int posX, int posY, HANDLE hConsoleOut);
 
 void setConsoleFont(HANDLE hConsoleOut, int fontSize);
