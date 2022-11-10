@@ -45,11 +45,11 @@ int main(int argc, char const *argv[])
     char *SPR_MENU_BG = loadSPR("./sprs/backgd_menu.txt");
     char *SPR_MENU_OPTNS = loadSPR("./sprs/menuOptions.txt");
 
-    char *FALAS = loadSPR("./sprs/Falas.txt");
+    char *SPR_FALAS = loadSPR("./sprs/Falas.txt");
 
     setCmdCursor(0, 0, hConsoleOut);
     showSPR(SPR1_OPENING, 0, -1);
-    showFala('1', FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
+    showFala('1', SPR_FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
     // Animação de mexer a boca
     for (int i = 0; i < 5; i++)
     {
@@ -69,7 +69,7 @@ int main(int argc, char const *argv[])
 
     setCmdCursor(0, 41, hConsoleOut);
     showSPR(SPR3_OPENING, 41, 55);
-    showFala('2', FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
+    showFala('2', SPR_FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
     // Animação de mexer a boca
     for (int i = 0; i < 5; i++)
     {
@@ -93,8 +93,8 @@ int main(int argc, char const *argv[])
     AVLNodo *mainTree = NULL;
 
     // Outras variáveis usadas pelo programa
-    int maiorQtdeDigs = 0, aux, usrSelection;
-    char format[10];
+    int maiorQtdeDigs = 0, aux;
+    char format[10], usrSelection;
 
     // Cria a string que será passada para o scanf de leitura do nome do produto
     snprintf(format, sizeof(format), "%%%d[^\n]s", TAM_PROD_STR - 1);
@@ -104,6 +104,7 @@ int main(int argc, char const *argv[])
     setWindowSize(hConsoleOut, MENU_W, SPR_H, true);
     setWindowSize(hConsoleOut, MENU_W, MENU_H, false);
 
+    // Loop principal
     while (1)
     {
         // Exibe o o background do menu
@@ -116,73 +117,126 @@ int main(int argc, char const *argv[])
         usrSelection = getch();
 
         // Configura o console para a parte do sistema do mercado
+        system("cls");
         setConsoleFont(hConsoleOut, MSYSTEM_FONT);
         setWindowSize(hConsoleOut, MSYSTEM_W, MSYSTEM_H, false);
+        setCmdCursor(0, 0, hConsoleOut);
+        hideCursor(hConsoleOut, false);
 
         switch (usrSelection)
         {
         // Inserir
-        case 1:
-            insertOption(mainTree, format, &maiorQtdeDigs);
+        case '1':
+            insertOption(&mainTree, format, &maiorQtdeDigs);
+            getch();
             break;
 
         // Listagem vertical
-        case 2:
+        case '2':
             imprimeArvVertical(mainTree);
             getch();
             break;
 
         // Listagem de arvore
-        case 3:
+        case '3':
             imprimePorNivel(mainTree, maiorQtdeDigs);
             getch();
             break;
 
         // Procurar chave
-        case 4:
+        case '4':
             searchOption(mainTree);
             getch();
             break;
 
         // Editar valor de um elemento
-        case 5:
-            editElementOption(mainTree, format, &maiorQtdeDigs);
+        case '5':
+            editElementOption(&mainTree, format, &maiorQtdeDigs);
             getch();
             break;
 
         // Excluir
-        case 6:
-            deleteOption(mainTree);
+        case '6':
+            deleteOption(&mainTree);
             getch();
             break;
 
         // Imprime ordenado
-        case 7:
+        case '7':
             imprimeOrdenado(mainTree);
             printf("\n");
             getch();
             break;
 
         // Num. elementos na árvore
-        case 8:
+        case '8':
             printf("Quantidade de elementos na arvore: %d\n", qtdeElementos(mainTree));
             getch();
             break;
 
         // Altura da árvore
-        case 9:
+        case '9':
             printf("Altura da arvore: %d\n", alturaArv(mainTree));
             getch();
             break;
 
         // Fecha o programa
-        case 0:
+        case '0':
+
+            // Configura a janela para exibir o menu pela última vez
+            system("cls");
+            setConsoleFont(hConsoleOut, SPR_FONT);
+            setWindowSize(hConsoleOut, SPR_W, SPR_H, true);
+            hideCursor(hConsoleOut, true);
+
+            setCmdCursor(0, 0, hConsoleOut);
+            showSPR(SPR1_OPENING, 0, -1);
+
+            // Olhinhos fechados
+            setCmdCursor(0, 41, hConsoleOut);
+            showSPR(SPR3_OPENING, 41, 55);
+
+            // Mostra última fala
+            showFala('3', SPR_FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
+            // Animação de mexer a boca
+            for (int i = 0; i < 5; i++)
+            {
+                timer(150);
+
+                setCmdCursor(0, 60, hConsoleOut);
+                showSPR(SPR2_OPENING, 60, 64);
+
+                timer(150);
+
+                setCmdCursor(0, 60, hConsoleOut);
+                showSPR(SPR1_OPENING, 60, 64);
+            }
+
+            FlushConsoleInputBuffer(hConsoleIn);
+            getch();
+
+            // Desaloca os sprites
+            free(SPR1_OPENING);
+            free(SPR2_OPENING);
+            free(SPR3_OPENING);
+            free(SPR_FALAS);
+            free(SPR_MENU_BG);
+            free(SPR_MENU_OPTNS);
+
+            // Libera a árvore
             freeTree(mainTree);
+
             exit(EXIT_SUCCESS);
 
         default:
             break;
         }
+
+        // Configura a janela para exibir o menu de novo
+        system("cls");
+        setConsoleFont(hConsoleOut, SPR_FONT);
+        setWindowSize(hConsoleOut, MENU_W, MENU_H, true);
+        hideCursor(hConsoleOut, true);
     }
 
     return 0;

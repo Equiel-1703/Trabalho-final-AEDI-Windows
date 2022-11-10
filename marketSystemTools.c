@@ -91,7 +91,7 @@ int aux;
 AVLNodo *el;
 
 // ---------------------------------------- Funções do sistema ----------------------------------------
-void insertOption(AVLNodo *tree, char *format, int *maiorQtdeDigs)
+void insertOption(AVLNodo **tree, char *format, int *maiorQtdeDigs)
 {
     while (1)
     {
@@ -105,7 +105,7 @@ void insertOption(AVLNodo *tree, char *format, int *maiorQtdeDigs)
         }
         else // Valida elemento repetido
         {
-            if (buscarEl(tree, usrKey))
+            if (buscarEl(*tree, usrKey))
             {
                 printf("\nEsta chave ja existe! Insira outra.\n\n");
                 continue;
@@ -127,7 +127,7 @@ void insertOption(AVLNodo *tree, char *format, int *maiorQtdeDigs)
 
     // printf("\nQtde digitos: %d\n", maiorQtdeDigs);
 
-    if (incluir(&tree, usrKey, preco, nomeProd))
+    if (incluir(tree, usrKey, preco, nomeProd))
         printf("\nFeito!\n");
 }
 
@@ -145,13 +145,13 @@ void searchOption(AVLNodo *tree)
         printf("Elemento nao encontrado.\n");
 }
 
-void editElementOption(AVLNodo *tree, char *format, int *maiorQtdeDigs)
+void editElementOption(AVLNodo **tree, char *format, int *maiorQtdeDigs)
 {
     printf("Informe a chave do elemento que deseja editar: ");
     readUnsInteger(&usrKey);
 
     // Remove o elemento a ser editado
-    el = removeNodo(&tree, usrKey);
+    el = removeNodo(tree, usrKey);
 
     if (el)
     {
@@ -184,7 +184,7 @@ void editElementOption(AVLNodo *tree, char *format, int *maiorQtdeDigs)
                 }
                 else // Valida elemento repetido
                 {
-                    if (buscarEl(tree, usrKey))
+                    if (buscarEl(*tree, usrKey))
                     {
                         printf("\nEsta chave ja existe! Insira outra.\n\n");
                         continue;
@@ -218,19 +218,19 @@ void editElementOption(AVLNodo *tree, char *format, int *maiorQtdeDigs)
         }
 
         // Insere o elemento editado
-        if (incluir(&tree, usrKey, preco, nomeProd))
+        if (incluir(tree, usrKey, preco, nomeProd))
             printf("\nFeito!\n");
     }
     else
         printf("\nO elemento nao existe.\n");
 }
 
-void deleteOption(AVLNodo *tree)
+void deleteOption(AVLNodo **tree)
 {
     printf("Digite uma chave para excluir: ");
     readUnsInteger(&usrKey);
 
-    el = removeNodo(&tree, usrKey);
+    el = removeNodo(tree, usrKey);
 
     if (el)
     {
