@@ -217,6 +217,29 @@ void setCmdCursor(int x, int y, HANDLE hConsoleOut)
     }
 }
 
+void centerWindow(HWND ConsoleWindow)
+{
+    // Getting the desktop handle and rectangule
+    RECT rectScreen;
+    HWND hwndScreen = GetDesktopWindow();
+    GetWindowRect(hwndScreen, &rectScreen);
+
+    // Get the current width and height of the console
+    RECT rConsole;
+    GetWindowRect(ConsoleWindow, &rConsole);
+
+    int Width = rConsole.right - rConsole.left;
+    int Height = rConsole.bottom - rConsole.top;
+
+    // caculate the window console to center of the screen
+    int ConsolePosX;
+    int ConsolePosY;
+    ConsolePosX = ((rectScreen.right - rectScreen.left) - Width) / 2;
+    ConsolePosY = ((rectScreen.bottom - rectScreen.top) - Height) / 2;
+
+    SetWindowPos(ConsoleWindow, NULL, ConsolePosX, ConsolePosY, Width, Height, SWP_SHOWWINDOW | SWP_NOSIZE);
+}
+
 // Esconde o cursor
 void hideCursor(HANDLE hConsoleOut, bool val)
 {

@@ -22,11 +22,12 @@ char *loadSPR(const char *arquivo);
 void showFala(char falaNum, char *falaSPR, int posX, int posY, HANDLE hConsoleOut);
 void showSPRinPos(char *SPR, int posX, int posY, HANDLE hConsoleOut);
 
-// Funções do console
+// Funções de janela e console
 void setConsoleFont(HANDLE hConsoleOut, int fontSize);
 void setWindowSize(HANDLE hConsole, int BufferX, int BufferY, bool Aumenta);
 void setCmdCursor(int x, int y, HANDLE hConsoleOut);
 void hideCursor(HANDLE hConsoleOut, bool val);
+void centerWindow(HWND ConsoleWindow);
 
 // Funções auxiliares
 void timer(int tempoMS);

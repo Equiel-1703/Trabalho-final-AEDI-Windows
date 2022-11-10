@@ -48,6 +48,8 @@ int main(int argc, char const *argv[])
     char *SPR_FALAS = loadSPR("./sprs/Falas.txt");
 
     setCmdCursor(0, 0, hConsoleOut);
+    centerWindow(wConsole);
+
     showSPR(SPR1_OPENING, 0, -1);
     showFala('1', SPR_FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
     // Animação de mexer a boca
@@ -113,6 +115,7 @@ int main(int argc, char const *argv[])
         // Exibe o menu de opções
         showSPRinPos(SPR_MENU_OPTNS, 57, 16, hConsoleOut);
 
+        centerWindow(wConsole);
         FlushConsoleInputBuffer(hConsoleIn);
         usrSelection = getch();
 
@@ -122,6 +125,8 @@ int main(int argc, char const *argv[])
         setWindowSize(hConsoleOut, MSYSTEM_W, MSYSTEM_H, false);
         setCmdCursor(0, 0, hConsoleOut);
         hideCursor(hConsoleOut, false);
+
+        centerWindow(wConsole);
 
         switch (usrSelection)
         {
@@ -198,6 +203,9 @@ int main(int argc, char const *argv[])
 
             // Mostra última fala
             showFala('3', SPR_FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
+
+            centerWindow(wConsole);
+
             // Animação de mexer a boca
             for (int i = 0; i < 5; i++)
             {
