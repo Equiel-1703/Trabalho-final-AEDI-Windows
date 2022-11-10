@@ -1,4 +1,5 @@
 # Trabalho Final de AED I (com API do Windows)
+_Feito por Henrique Gabriel Rodrigues_
 
 Esse foi meu trabalho final da disciplina de Algoritmos e Estruturas de Dados I, lecionada pelo professor Rafael Burlamaqui na Universidade Federal de Pelotas. 
 
