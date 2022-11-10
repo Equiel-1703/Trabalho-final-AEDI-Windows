@@ -16,19 +16,22 @@
 #define POS_FALA_X 145
 #define POS_FALA_Y 22
 
+// Funções de sprites e falas
 void showSPR(char *SPR, int lineStart, int lineEnd);
 char *loadSPR(const char *arquivo);
 void showFala(char falaNum, char *falaSPR, int posX, int posY, HANDLE hConsoleOut);
 void showSPRinPos(char *SPR, int posX, int posY, HANDLE hConsoleOut);
 
+// Funções do console
 void setConsoleFont(HANDLE hConsoleOut, int fontSize);
 void setWindowSize(HANDLE hConsole, int BufferX, int BufferY, bool Aumenta);
 void setCmdCursor(int x, int y, HANDLE hConsoleOut);
 void hideCursor(HANDLE hConsoleOut, bool val);
 
+// Funções auxiliares
 void timer(int tempoMS);
 
-// --------------------------------------------------- Coisas da API do Windows ---------------------------------------------------
+// --------------------------------------------------- Coisas da API do Windows (MinGW 32 bits) ---------------------------------------------------
 
 typedef struct _CONSOLE_FONT_INFOEX
 {
