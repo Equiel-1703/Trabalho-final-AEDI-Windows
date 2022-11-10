@@ -43,35 +43,36 @@ char *loadSPR(const char *arquivo)
 }
 
 // Mostra alguma fala na tela em dada posição
-void showFala(char falaNum, char *falaStr, int posX, int posY, HANDLE hConsoleOut)
+void showFala(char falaNum, char *falaSPR, int posX, int posY, HANDLE hConsoleOut)
 {
-    int i = 0, tam = strlen(falaStr), origPosX = posX;
+    int startIndex = 0, endIndex = 0, tam = strlen(falaSPR);
 
-    while (falaStr[i] != falaNum && i < tam)
-        i++;
+    while (falaSPR[startIndex] != falaNum && startIndex < tam)
+        startIndex++;
 
-    if (i == tam)
+    if (startIndex == tam)
     {
         printf("\nFala não encontrada!\n");
         return;
     }
+    endIndex = ++startIndex; // pula o primeiro \n e salva em endIndex (para procurar o índice de fim)
 
-    i++; // pula o primeiro \n
-
-    while (falaStr[++i] != falaNum + 1 && i < tam)
+    while (startIndex < tam && falaSPR[startIndex] != falaNum + 1)
     {
         setCmdCursor(posX, posY, hConsoleOut);
 
-        if (falaStr[i] != '\n')
+        while (endIndex < tam)
         {
-            putc(falaStr[i], stdout);
-            posX++;
+            if (falaSPR[endIndex] != '\n')
+                endIndex++;
+            else
+                break;
         }
-        else
-        {
-            posY++;
-            posX = origPosX;
-        }
+
+        fwrite(falaSPR + startIndex, sizeof(char), endIndex - startIndex, stdout);
+        posY++;
+
+        startIndex = ++endIndex;
     }
 }
 
