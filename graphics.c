@@ -75,6 +75,30 @@ void showFala(char falaNum, char *falaStr, int posX, int posY, HANDLE hConsoleOu
     }
 }
 
+// Mostra um sprite na tela em dada posição X e Y
+void showSPRinPos(char *SPR, int posX, int posY, HANDLE hConsoleOut)
+{
+    int startIndex = 0, endIndex = 0, tam = strlen(SPR);
+
+    while (startIndex < tam)
+    {
+        setCmdCursor(posX, posY, hConsoleOut);
+
+        while (endIndex < tam)
+        {
+            if (SPR[endIndex] != '\n')
+                endIndex++;
+            else
+                break;
+        }
+
+        fwrite(SPR + startIndex, sizeof(char), endIndex - startIndex, stdout);
+        posY++;
+
+        startIndex = ++endIndex;
+    }
+}
+
 // Mostra um sprite a partir de determinada linha até outra dada linha. AS LINHAS COMEÇAM EM 0!!
 void showSPR(char *SPR, int lineStart, int lineEnd)
 {
