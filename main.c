@@ -116,8 +116,11 @@ int main(int argc, char const *argv[])
         showSPRinPos(SPR_MENU_OPTNS, 57, 16, hConsoleOut);
 
         centerWindow(wConsole);
-        FlushConsoleInputBuffer(hConsoleIn);
-        usrSelection = getch();
+
+        do
+        {
+            FlushConsoleInputBuffer(hConsoleIn);
+        } while ((usrSelection = getch()) > '9' || usrSelection < '0');
 
         // Configura o console para a parte do sistema do mercado
         system("cls");
@@ -187,7 +190,6 @@ int main(int argc, char const *argv[])
 
         // Fecha o programa
         case '0':
-
             // Configura a janela para exibir o menu pela última vez
             system("cls");
             setConsoleFont(hConsoleOut, SPR_FONT);
