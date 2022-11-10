@@ -4,7 +4,7 @@ Esse foi meu trabalho final da disciplina de Algoritmos e Estruturas de Dados I,
 
 Essa versão possui uma interface muito mais interessante com o usuário, usando dos recursos disponíveis na API do Windows.
 
-Muitos dos recursos usados aqui foram reaproveitados do código que escrevi para fazer os gráficos do [8-Puzzle](https://github.com/Equiel-1703/8-Puzzle), jogo feito como trabalho final da disciplina de Programação de Computadores. Esses códigos foram muito melhorados e otimizados. Por exemplo, antes os sprites eram lidos diretamente de um arquivo txt salvo no disco rígido. Agora, os sprites são carregados em strings alocadas dinamicamente na RAM, otimizando e muito a utilização dos sprites. 
+Muitos dos recursos usados aqui foram reaproveitados do código que escrevi para fazer os gráficos do [8-Puzzle](https://github.com/Equiel-1703/8-Puzzle), jogo feito como trabalho final da disciplina de Programação de Computadores. Esses códigos foram muito melhorados e otimizados. Por exemplo, antes os sprites eram lidos diretamente de um arquivo txt salvo no disco rígido. Agora, os sprites são carregados em strings alocadas dinamicamente na RAM, otimizando e muito a utilização deles. 
 
 A forma de exibir os sprites na tela também foi otimizada. Antes eles eram exibidos linha a linha usando funções como fgets ou getline para ler do arquivo no disco e imprimindo na tela com printf. Nessa versão melhorada, o arquivo já está na RAM, portanto só percorri o vetor buscando o índice de início e fim desejado e imprimi na tela usando fwrite (que é muito mais rápido que a função printf).
 
