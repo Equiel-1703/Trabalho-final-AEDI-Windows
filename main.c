@@ -118,6 +118,54 @@ int main(int argc, char const *argv[])
             FlushConsoleInputBuffer(hConsoleIn);
         } while ((usrSelection = getch()) > '9' || usrSelection < '0');
 
+        // Fecha o programa
+        if (usrSelection == '0')
+        {
+            system("cls");
+
+            setWindowSize(hConsoleOut, MENU_W, SPR_H, true);
+            setWindowSize(hConsoleOut, SPR_W, SPR_H, false);
+
+            setCmdCursor(0, 0, hConsoleOut);
+            showSPR(SPR1_OPENING, 0, -1);
+
+            // Olhinhos fechados
+            setCmdCursor(0, 41, hConsoleOut);
+            showSPR(SPR3_OPENING, 41, 55);
+
+            // Mostra última fala
+            showFala('3', SPR_FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
+            // Animação de mexer a boca
+            for (int i = 0; i < 5; i++)
+            {
+                timer(150);
+
+                setCmdCursor(0, 60, hConsoleOut);
+                showSPR(SPR2_OPENING, 60, 64);
+
+                timer(150);
+
+                setCmdCursor(0, 60, hConsoleOut);
+                showSPR(SPR1_OPENING, 60, 64);
+            }
+
+            // Desaloca os sprites
+            free(SPR1_OPENING);
+            free(SPR2_OPENING);
+            free(SPR3_OPENING);
+            free(SPR_FALAS);
+            free(SPR_MENU_BG);
+            free(SPR_MENU_OPTNS);
+
+            // Libera a árvore
+            freeTree(mainTree);
+
+            FlushConsoleInputBuffer(hConsoleIn);
+            getch();
+
+            exit(EXIT_SUCCESS);
+        }
+
         // Configura o console para a parte do sistema do mercado
         system("cls");
         setConsoleFont(hConsoleOut, MSYSTEM_FONT);
@@ -181,54 +229,6 @@ int main(int argc, char const *argv[])
             printf("Altura da arvore: %d\n", alturaArv(mainTree));
             getch();
             break;
-
-        // Fecha o programa
-        case '0':
-
-            // Configura a janela para exibir o menu pela última vez
-            system("cls");
-            setConsoleFont(hConsoleOut, SPR_FONT);
-            setWindowSize(hConsoleOut, SPR_W, SPR_H, true);
-            hideCursor(hConsoleOut, true);
-
-            setCmdCursor(0, 0, hConsoleOut);
-            showSPR(SPR1_OPENING, 0, -1);
-
-            // Olhinhos fechados
-            setCmdCursor(0, 41, hConsoleOut);
-            showSPR(SPR3_OPENING, 41, 55);
-
-            // Mostra última fala
-            showFala('3', SPR_FALAS, POS_FALA_X, POS_FALA_Y, hConsoleOut);
-            // Animação de mexer a boca
-            for (int i = 0; i < 5; i++)
-            {
-                timer(150);
-
-                setCmdCursor(0, 60, hConsoleOut);
-                showSPR(SPR2_OPENING, 60, 64);
-
-                timer(150);
-
-                setCmdCursor(0, 60, hConsoleOut);
-                showSPR(SPR1_OPENING, 60, 64);
-            }
-
-            FlushConsoleInputBuffer(hConsoleIn);
-            getch();
-
-            // Desaloca os sprites
-            free(SPR1_OPENING);
-            free(SPR2_OPENING);
-            free(SPR3_OPENING);
-            free(SPR_FALAS);
-            free(SPR_MENU_BG);
-            free(SPR_MENU_OPTNS);
-
-            // Libera a árvore
-            freeTree(mainTree);
-
-            exit(EXIT_SUCCESS);
 
         default:
             break;
