@@ -91,6 +91,8 @@ int aux;
 AVLNodo *el;
 
 // ---------------------------------------- Funções do sistema ----------------------------------------
+
+// Insere elemento na árvore
 void insertOption(AVLNodo **tree, char *format, int *maiorQtdeDigs)
 {
     while (1)
@@ -131,6 +133,7 @@ void insertOption(AVLNodo **tree, char *format, int *maiorQtdeDigs)
         printf("\nFeito!\n");
 }
 
+// Busca elemento na árvore
 void searchOption(AVLNodo *tree)
 {
     printf("Digite uma chave para buscar: ");
@@ -145,8 +148,15 @@ void searchOption(AVLNodo *tree)
         printf("Elemento nao encontrado.\n");
 }
 
+// Edita um elemento da árvore
 void editElementOption(AVLNodo **tree, char *format, int *maiorQtdeDigs)
 {
+    if (estaVazia(*tree))
+    {
+        printf("Arvore vazia.\n");
+        return;
+    }
+
     printf("Informe a chave do elemento que deseja editar: ");
     readUnsInteger(&usrKey);
 
@@ -225,8 +235,15 @@ void editElementOption(AVLNodo **tree, char *format, int *maiorQtdeDigs)
         printf("\nO elemento nao existe.\n");
 }
 
+// Deleta ume elemento da árvore
 void deleteOption(AVLNodo **tree)
 {
+    if (estaVazia(*tree))
+    {
+        printf("Arvore vazia.\n");
+        return;
+    }
+
     printf("Digite uma chave para excluir: ");
     readUnsInteger(&usrKey);
 
