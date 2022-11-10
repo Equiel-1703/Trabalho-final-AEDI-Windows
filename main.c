@@ -18,7 +18,7 @@ int main(int argc, char const *argv[])
     }
 
     // Limpa a tela e coloca as cores
-    SetConsoleTitleW(L"Testes gráficos");
+    SetConsoleTitleW(L"Mercado da Ju");
     system("cls");
     system("COLOR 70");
 
