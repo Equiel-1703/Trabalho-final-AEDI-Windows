@@ -13,4 +13,6 @@ Essas e outras melhorias permitiram até mesmo compilar com o MinGW-W64. Isso er
 
 Meu palpite é de que no MinGW normal o compilador criava um buffer onde os arquivos que eram constantemente acessados no disco (os sprites nesse caso) eram salvos, e portanto não causava lentidão na hora de exibir na tela. Já o MinGW-W64 não faz isso, e então causa o bug que mencionei. Mas graças às melhorias feitas na biblioteca de gráficos, esse bug não acontece mais com o MinGW-W64.
 
-A parte do TAD da árvore AVL é exatamente igual em ambas as versões do trabalho final de AED I.
+Quanto à parte do TAD da árvore AVL, ela é exatamente igual em ambas as versões do trabalho final de AED I.
+
+Um relatório descrevendo as maiores dificuldades, funcionamento e estrutura do código pode ser acessado [aqui](https://drive.google.com/file/d/18D8r6IBg3ftjk23JjUlPvt_c7hH8h80E/view?usp=share_link).
