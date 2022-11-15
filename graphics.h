@@ -31,17 +31,3 @@ void centerWindow(HWND ConsoleWindow);
 
 // Funções auxiliares
 void timer(int tempoMS);
-
-// --------------------------------------------------- Coisas da API do Windows (MinGW 32 bits) ---------------------------------------------------
-
-typedef struct _CONSOLE_FONT_INFOEX
-{
-    ULONG cbSize;
-    DWORD nFont;
-    COORD dwFontSize;
-    UINT FontFamily;
-    UINT FontWeight;
-    WCHAR FaceName[LF_FACESIZE];
-} CONSOLE_FONT_INFOEX, *PCONSOLE_FONT_INFOEX;
-
-BOOL WINAPI SetCurrentConsoleFontEx(HANDLE hConsoleOutput, BOOL bMaximumWindow, PCONSOLE_FONT_INFOEX lpConsoleCurrentFontEx);
