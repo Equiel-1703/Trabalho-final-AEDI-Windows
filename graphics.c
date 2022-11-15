@@ -125,6 +125,7 @@ void showSPR(char *SPR, int lineStart, int lineEnd)
         }
     }
 
+    // Aqui ele procura o índice da linha de término
     if (lineEnd != -1)
     {
         int numLines = lineEnd - lineStart;
